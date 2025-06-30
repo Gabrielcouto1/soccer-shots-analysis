@@ -1,6 +1,7 @@
 pre_process_data <- function(dataframe) {
     # Removing shots taken with body_part == "Other".
-    # Removed it because we had too little data regarding these thype of shots.
+    # Removed it because we had too little data regarding these type of shots and the statistics may be misleading.
+	# If you still wanna use it, comment lines 5 and 6
     dataframe <- dataframe %>%
       filter(body_part != "Other")
     
@@ -14,6 +15,7 @@ pre_process_data <- function(dataframe) {
             defending_team = as.factor(defending_team),
 
             # shot properties
+            shooter_name = as.factor(shooter_name),
             shooter_position = as.factor(shooter_position),
             body_part = as.factor(body_part),
             shot_technique = as.factor(shot_technique),
