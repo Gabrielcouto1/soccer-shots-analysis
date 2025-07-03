@@ -10,6 +10,11 @@ draw_shots <- function(shots_data, save=FALSE){
 		away_team_name <- shots_data[1,]$attacking_team
 	}
 
+	home_team_shots <- sum(shots_data$attacking_team == home_team_name)
+    away_team_shots <- sum(shots_data$attacking_team == away_team_name)
+
+	home_team_goals <- sum(shots_data$attacking_team == home_team_name & shots_data$is_goal == 1)
+    away_team_goals <- sum(shots_data$attacking_team == away_team_name & shots_data$is_goal == 1)
 
 	green <- "#7FFF00"
 
@@ -42,13 +47,17 @@ draw_shots <- function(shots_data, save=FALSE){
 				size = shots_data_processed$point_size) +
 		geom_segment(data = shots_data_processed, 
 					aes(x = plot_x_location, y = plot_y_location, xend = plot_x_end_location, yend = plot_y_end_location, color = segment_color), 
-					linewidth = 0.5,
+					linewidth = 0.8,
 					arrow = arrow(length = unit(0.2, "cm"))) +
 		
 		scale_color_manual(values = c("Goal" = green, "No Goal" = "red", "No Goal Trajectory" = "red", "Goal Trajectory"=green)) +
-		labs(title = paste0(home_team_name, " vs ", away_team_name, " - Shots"),
+		labs(title = paste0(home_team_name, " (", home_team_goals, ")",
+						    " vs ",
+							away_team_name, " (", away_team_goals, ")\n",
+							"Shots count: \n", home_team_shots," vs ", away_team_shots
+							),
 			color = "Shot Outcome") +
-		theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
+		theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold", color="white"),
 			legend.position = "bottom")
   
   	if(save){
