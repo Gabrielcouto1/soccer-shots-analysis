@@ -15,4 +15,5 @@ match_id <- 3890477
 
 shots_from_match <- get_shots_by_match_id(match_id=match_id, dataset=shots)
 
-draw_shots(shots_from_match)
+plot <- draw_shots(shots_from_match, save=TRUE)
+
