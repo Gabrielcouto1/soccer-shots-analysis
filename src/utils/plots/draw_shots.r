@@ -1,6 +1,6 @@
 source("./src/utils/plots/plot_empty_field.r")
 
-draw_shots <- function(shots_data){
+draw_shots <- function(shots_data, save=FALSE){
 
 	if((shots_data[1,]$is_home)==1){
 		home_team_name <- shots_data[1,]$attacking_team
@@ -51,5 +51,12 @@ draw_shots <- function(shots_data){
 		theme(plot.title = element_text(hjust = 0.5, size = 16, face = "bold"),
 			legend.position = "bottom")
   
-  return(p)
+  	if(save){
+			ggsave(paste0("./plots/shots/shots_", home_team_name, "_vs_", away_team_name, "_", shots_data[1,]$match_id, ".png"),
+				   plot=p,
+				   width=8,
+				   height=6,
+				   dpi=300)
+  	}
+  	return(p)
 }
