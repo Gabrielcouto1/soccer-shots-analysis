@@ -85,7 +85,7 @@ plot_empty_field <- function() {
 
         theme_void() + # Remove eixos e plano de fundo padrão
         coord_fixed(ratio = 1) + # Mantém a proporção do campo
-        theme(plot.background = element_rect(fill = "#969696", color = NA)) # Cor de fundo do plot
+        theme(plot.background = element_rect(fill = "#434343", color = NA)) # Cor de fundo do plot
     
     return(p)
 }
