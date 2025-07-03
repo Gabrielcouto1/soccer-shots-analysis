@@ -11,7 +11,7 @@ data <- pre_process_data(df)
 
 shots <- data$dataframe
 
-match_id <- 3890477
+match_id <- sample(shots$match_id, 1)
 
 shots_from_match <- get_shots_by_match_id(match_id=match_id, dataset=shots)
 
