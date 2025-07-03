@@ -1,6 +1,3 @@
-source("./src/utils/check_libraries.r")
-check_libraries()
-
 plot_shots_by_body_part <- function(dataset, save=FALSE, path="./plots/shots_by_body_part.png"){
     if(save){
         png(file = path, width = 1600, height = 1200, res = 200)
