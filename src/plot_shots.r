@@ -1,7 +1,7 @@
 source("./src/utils/check_libraries.r")
 source("./src/utils/pre_process_data.r")
-source("./src/utils/plots/plot_empty_field.r")
 source("./src/utils/plots/get_shots_by_match_id.r")
+source("./src/utils/plots/draw_shots.r")
 
 check_libraries()
 
@@ -13,8 +13,6 @@ shots <- data$dataframe
 
 match_id <- 3890477
 
-shots_from_match <- get_shots_by_match_id(match_id=3890477, dataset=shots)
+shots_from_match <- get_shots_by_match_id(match_id=match_id, dataset=shots)
 
-empty_field <- plot_empty_field()
-empty_field
-
+draw_shots(shots_from_match)
