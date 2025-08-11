@@ -1,12 +1,15 @@
 check_libraries <- function() {
     options("width"=200)
-
+    options(timeout = 600)
     required_packages <- c(
         "dplyr", 
         "tidyverse", 
         "ggplot2", 
         "corrplot",
-        "caret"
+        "caret", 
+        "here", 
+        "viridis",
+        "ggthemes"
     )
 
     for (pkg in required_packages) {
