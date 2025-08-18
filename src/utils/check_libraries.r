@@ -9,7 +9,11 @@ check_libraries <- function() {
         "caret", 
         "here", 
         "viridis",
-        "ggthemes"
+        "ggthemes",
+        "tidymodels",
+        "modelr",
+        "glue", 
+        "kknn"
     )
 
     for (pkg in required_packages) {
