@@ -13,7 +13,10 @@ check_libraries <- function() {
         "tidymodels",
         "modelr",
         "glue", 
-        "kknn"
+        "kknn",
+        "ranger",
+        "xgboost",
+        "tidyr"
     )
 
     for (pkg in required_packages) {
