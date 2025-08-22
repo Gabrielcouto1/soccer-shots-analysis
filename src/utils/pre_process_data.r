@@ -59,40 +59,10 @@ pre_process_data <- function(dataframe) {
         ) %>%
       na.omit() 
     
-    predicting_vars <- dataframe %>%
-        select(
-            is_goal, 
-            # x_location, 
-            # y_location, 
-            # x_end_location,
-            # y_end_location,
-            # shot_dist,
-            dist_to_goal,
-            shot_angle,
-            # is_ca,
-            # is_from_cross,
-            # is_under_pressure,
-            is_penalty,
-            is_open_goal,
-            is_first_time,
-            # is_one_on_one,
-            # is_aerial_win,
-            # teammates_in_frame,
-            opponents_in_frame,
-            # closest_opponent_dist,
-            # goalkeeper_dist,
-            # opponents_in_penalty_area,
-            # opponents_in_goal_area,
-            opponents_in_shot_path,
-            statsbomb_xg,
-            # period,
-            # seconds_since_previous_shot,  # Removing the comment of this line will result in omitting the first shot of each match (-2.441 shots).
-            # timestamp
-        )
+    
 
     return(list(
         dataframe = dataframe,
-        numeric_vars = numeric_vars,
-        predicting_vars = predicting_vars
+        numeric_vars = numeric_vars
     ))
 }
