@@ -33,7 +33,7 @@ predicting_vars1 <- data$dataframe %>%
             # opponents_in_penalty_area,
             # opponents_in_goal_area,
             opponents_in_shot_path,
-            statsbomb_xg,
+            # statsbomb_xg,
             # period,
             # seconds_since_previous_shot,  # Removing the comment of this line will result in omitting the first shot of each match (-2.441 shots).
             # timestamp
@@ -64,7 +64,7 @@ predicting_vars2 <- data$dataframe %>%
             opponents_in_penalty_area, #this 
             opponents_in_goal_area, #this 
             opponents_in_shot_path,
-            statsbomb_xg,
+            # statsbomb_xg,
             # period,
             # seconds_since_previous_shot,  
             # timestamp
@@ -95,7 +95,7 @@ predicting_vars3 <- data$dataframe %>%
             # opponents_in_penalty_area,
             # opponents_in_goal_area,
             opponents_in_shot_path,
-            statsbomb_xg,
+            # statsbomb_xg,
             # period,
             # seconds_since_previous_shot,  # Removing the comment of this line will result in omitting the first shot of each match (-2.441 shots).
             # timestamp
@@ -126,7 +126,7 @@ predicting_vars4 <- data$dataframe %>%
             opponents_in_penalty_area,
             opponents_in_goal_area,
             opponents_in_shot_path,
-            statsbomb_xg,
+            # statsbomb_xg,
             # period,
             # seconds_since_previous_shot,  # Removing the comment of this line will result in omitting the first shot of each match (-2.441 shots).
             # timestamp
@@ -157,19 +157,14 @@ predicting_vars5 <- data$dataframe %>%
             # opponents_in_penalty_area,
             # opponents_in_goal_area,
             opponents_in_shot_path,
-            statsbomb_xg,
+            # statsbomb_xg,
             # period,
             # seconds_since_previous_shot,  # Removing the comment of this line will result in omitting the first shot of each match (-2.441 shots).
             # timestamp
 )
 
-# generate_metrics(predicting_vars1, "experiments1")
-# generate_metrics(predicting_vars2, "experiments2")
-# generate_metrics(predicting_vars3, "experiments3")
-
-if(1==1){
-    generate_metrics(predicting_vars4, "experiments4")
-    generate_metrics(predicting_vars5, "experiments5")
-
-}
-
+generate_metrics(predicting_vars1, "experiments1")
+generate_metrics(predicting_vars2, "experiments2")
+generate_metrics(predicting_vars3, "experiments3")
+generate_metrics(predicting_vars4, "experiments4")
+generate_metrics(predicting_vars5, "experiments5")
