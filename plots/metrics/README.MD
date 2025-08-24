@@ -11,7 +11,6 @@ This table outlines the variables used as predictors for each of the five models
 | `is_first_time`             |    ✔️    |    ✔️    |    ✔️    |    ✔️    |         |
 | `opponents_in_frame`        |    ✔️    |    ✔️    |    ✔️    |    ✔️    |    ✔️    |
 | `opponents_in_shot_path`    |    ✔️    |    ✔️    |    ✔️    |    ✔️    |    ✔️    |
-| `statsbomb_xg`              |    ✔️    |    ✔️    |    ✔️    |    ✔️    |    ✔️    |
 | `opponents_in_penalty_area` |         |    ✔️    |         |    ✔️    |         |
 | `opponents_in_goal_area`    |         |    ✔️    |         |    ✔️    |         |
 | `is_ca`                     |         |         |    ✔️    |         |         |
