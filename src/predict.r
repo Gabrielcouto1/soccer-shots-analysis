@@ -9,9 +9,9 @@ shot <- tibble( # Matheus Pereira vs Internacional Goal (23/08/2025)
     shot_angle=16, 
     is_penalty=0,
     is_open_goal=0,
-    is_first_time=0,
-    opponents_in_frame=2,
-    opponents_in_penalty_area=7,
+    is_first_time=1,
+    opponents_in_frame=7,
+    opponents_in_penalty_area=5,
     opponents_in_goal_area=1,
     opponents_in_shot_path=4
 )
