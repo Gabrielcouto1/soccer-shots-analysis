@@ -19,7 +19,7 @@ plot_metrics <- function(experiment, experiment_name) {
 		facet_wrap(~.metric, scales = "free_y", labeller = as_labeller(c(
 			"accuracy" = "Acurácia",
 			"precision" = "Precisão",
-			"recall" = "Recall"
+			"recall" = "Sensibilidade"
 		)))+
 		labs(
 			title = "Comparação de Performance",
