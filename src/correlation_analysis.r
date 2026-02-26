@@ -12,20 +12,20 @@ shots <- data$numeric_vars
 # Criando a variavel is_goal_factor para ter labels personalizadas e ajudar nos plots
 
 shots <- shots %>%
-  mutate(is_goal_factor = factor(is_goal, levels = c(1, 0), labels = c("Goal", "No Goal")))
+  mutate(is_goal_factor = factor(is_goal, levels = c(1, 0), labels = c("Gol", "Sem Gol")))
 
 # ------------------------------------------------------------------------------
 # Plot 1:  dist_angle_vs_goal.png
 
 plot1 <- ggplot(shots, aes(x = shot_dist, y = shot_angle, color = is_goal_factor)) +
   geom_point(alpha = 0.2, size = 1) +
-  scale_color_manual(values = c("Goal" = "#440154FF", "No Goal" = "#20fb33ff")) + # Usando cores do viridis
+  scale_color_manual(values = c("Gol" = "#440154FF", "Sem Gol" = "#20fb33ff")) + # Usando cores do viridis
   labs(
-    title = "Relation between Distance and Shot Angle",
-    subtitle = "Shots resulting in goal are highlighted",
-    x = "Distance to goal (in meters)",
-    y = "Shot angle(in radians)",
-    color = "Outcome"
+    title = "Relação entre distância e ângulo do chute",
+    subtitle = "Chutes resultantes em Gol estão em roxo",
+    x = "Distância para o gol (em metros)",
+    y = "Ângulo do chute (em graus)",
+    color = "Resultado do Chute"
   ) +
   theme_wsj(base_size=8) +
   theme(legend.position = "bottom") + 
@@ -43,12 +43,11 @@ ggsave(
 
 plot2 <- ggplot(shots, aes(x = is_goal_factor, y = shot_dist, fill = is_goal_factor)) +
   geom_boxplot(alpha = 0.7) +
-  scale_fill_manual(values = c("Goal" = "#35B779", "No Goal"= "#FDE725")) +
+  scale_fill_manual(values = c("Gol" = "#35B779", "Sem Gol"= "#FDE725")) +
   labs(
-    title = "Distance distribution by result",
-    subtitle = "Goals generally occur from lesser distances",
-    x = "Outcome",
-    y = "Distance to goal (in meters)"
+    title = "Distribuição da distância dos chutes",
+    x = "Resultado do Chute",
+    y = "Distância para o gol (em metros)"
   ) +
   theme_economist() +
   coord_flip() + # Virar o gráfico para melhor leitura
