@@ -4,7 +4,7 @@ generate_metrics <- function(predicting_vars, experiment_name) {
 	folds <- predicting_vars %>%
 		vfold_cv(v=10, strata=is_goal)
 
-	algorithms <- tibble(algorithm = c("Logistic Regression", "Decision Tree", "Random Forest", "XGBoost"))
+	algorithms <- tibble(algorithm = c("Regressão Logística", "Árvore de Decisão", "Floresta Aleatória", "XGBoost"))
 
 	# creates the tibble that will be used to get the metrics
 	experiments <- crossing(folds,algorithms)
@@ -20,9 +20,9 @@ generate_metrics <- function(predicting_vars, experiment_name) {
 		}),
 		
 		untrained_model = case_when(
-		algorithm == "Logistic Regression" ~ list(logistic_reg(mode = "classification") %>% set_engine("glm")),
-		algorithm == "Decision Tree"       ~ list(decision_tree(mode = "classification") %>% set_engine("rpart")),
-		algorithm == "Random Forest"       ~ list(rand_forest(mode = "classification") %>% set_engine("ranger")),
+		algorithm == "Regressão Logística" ~ list(logistic_reg(mode = "classification") %>% set_engine("glm")),
+		algorithm == "Árvore de Decisão"       ~ list(decision_tree(mode = "classification") %>% set_engine("rpart")),
+		algorithm == "Floresta Aleatória"       ~ list(rand_forest(mode = "classification") %>% set_engine("ranger")),
 		algorithm == "XGBoost"             ~ list(boost_tree(mode = "classification") %>% set_engine("xgboost")),
 		TRUE                               ~ list(NA) 
 		)

@@ -8,7 +8,7 @@ plot_metrics <- function(experiment, experiment_name) {
 
 	metrics_to_plot <- summarized_metrics %>% 
 		filter(.metric %in% c("accuracy", "precision", "recall"))
-
+	
 	min_y_value <- min(metrics_to_plot$mean) - 0.05
 
 	metrics_comparison_plot <- ggplot(metrics_to_plot, aes(x = reorder(algorithm, mean), y = mean, fill = algorithm)) +
@@ -16,12 +16,23 @@ plot_metrics <- function(experiment, experiment_name) {
 		geom_text(aes(label = round(mean, 4)), vjust = -0.5, size = 3.5) +
 		coord_cartesian(ylim = c(min_y_value, max(metrics_to_plot$mean) * 1.01 )) +
 		facet_wrap(~.metric, scales = "free_y") +
+		facet_wrap(~.metric, scales = "free_y", labeller = as_labeller(c(
+			"accuracy" = "Acurácia",
+			"precision" = "Precisão",
+			"recall" = "Recall"
+		)))+
 		labs(
-			title = "Performance comparison",
-			x = "Algorithm",
-			y = "Mean values"
+			title = "Comparação de Performance",
+			x = "Algoritmo",
+			y = "Valores médios"
 		) +
 		theme_fivethirtyeight() +
+		scale_x_discrete(labels = c(
+      		"Random Forest" = "Floresta Aleatória",
+      		"Linear Regression" = "Regressão Linear",
+      		"Decision Tree" = "Árvore de Decisão",
+			"XGBoost" = "XGBoost"
+    	))+
 		scale_color_fivethirtyeight() +
 		theme(axis.text.x = element_text(angle = 45, hjust = 1))
 		
@@ -48,9 +59,9 @@ plot_metrics <- function(experiment, experiment_name) {
 		geom_path(linewidth = 1.2) + 
 		geom_abline(linetype = "dashed") + 
 		labs(
-			title = "ROC Curve",
-			x = "False Positive Rate",
-			y = "True Positive Rate",
+			title = "Curva ROC",
+			x = "Taxa de Falsos Positivos",
+			y = "Taxa de Verdadeiros Positivos",
 			color = "Algorithm"
 		) +
 		coord_equal() + 
