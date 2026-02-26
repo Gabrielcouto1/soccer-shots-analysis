@@ -55,6 +55,14 @@ plot_metrics <- function(experiment, experiment_name) {
 	roc_curves <- roc_curves %>%
 		left_join(auc_values, by = "algorithm")
 
+	roc_curves <- roc_curves %>%
+  		mutate(label = recode(label,
+  		  	"Decision Tree (AUC = 0.583)"    = "Árvore de Decisão (AUC = 0.583)",
+  		  	"Logistic Regression (AUC = 0.791)" = "Regressão Logística (AUC = 0.791)",
+  		  	"Random Forest (AUC = 0.804)"    = "Floresta Aleatória (AUC = 0.804)",
+  		  	"XGBoost (AUC = 0.804)"          = "XGBoost (AUC = 0.804)"
+  		))
+
 	roc_plot <- ggplot(roc_curves, aes(x = 1 - specificity, y = sensitivity, color = label)) +
 		geom_path(linewidth = 1.2) + 
 		geom_abline(linetype = "dashed") + 
@@ -62,7 +70,7 @@ plot_metrics <- function(experiment, experiment_name) {
 			title = "Curva ROC",
 			x = "Taxa de Falsos Positivos",
 			y = "Taxa de Verdadeiros Positivos",
-			color = "Algorithm"
+			color = "Algoritmo"
 		) +
 		coord_equal() + 
 		theme_fivethirtyeight() 
