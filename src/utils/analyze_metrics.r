@@ -75,6 +75,39 @@ plot_metrics <- function(experiment, experiment_name) {
 		coord_equal() + 
 		theme_fivethirtyeight() 
 
+	conf_matrix_data <- all_predictions %>%
+		group_by(algorithm) %>%
+		conf_mat(truth = is_goal, estimate = .pred_class) %>%
+		mutate(tidied = map(conf_mat, tidy)) %>%
+		unnest(tidied) %>%
+		mutate(
+			name = recode(name,
+				"cell_1_1" = "Verdadeiro Negativo",
+				"cell_1_2" = "Falso Positivo",
+				"cell_2_1" = "Falso Negativo",
+				"cell_2_2" = "Verdadeiro Positivo"
+			),
+			Predito = ifelse(name %in% c("Verdadeiro Negativo", "Falso Negativo"), "0", "1"),
+			Real = ifelse(name %in% c("Verdadeiro Negativo", "Falso Positivo"), "0", "1")
+		) %>%
+		group_by(algorithm, Real) %>%
+		mutate(prop = value / sum(value)) %>%
+		ungroup()
+
+	confusion_matrix_plot <- ggplot(conf_matrix_data, aes(x = Predito, y = Real, fill = prop)) +
+		geom_tile(color = "white") +
+		geom_text(aes(label = paste0(value, "\n(", scales::percent(prop, accuracy = 0.1), ")")), size = 4, fontface = "bold") +
+		facet_wrap(~algorithm) +
+		scale_fill_gradient(low = "white", high = "#3498db") +
+		labs(
+			title = "Matriz de Confusão",
+			x = "Predito",
+			y = "Real",
+			fill = "Proporção"
+		) +
+		theme_fivethirtyeight() +
+		theme(axis.text = element_text(size = 11))
+
 	if (!dir.exists("./plots/metrics")) {
 		dir.create("./plots/metrics", recursive = TRUE)
 	}
@@ -90,6 +123,14 @@ plot_metrics <- function(experiment, experiment_name) {
 	ggsave(
 		paste0("plots/metrics/", experiment_name, "_roc_curve.png"), 
 		plot = roc_plot,
+		width = 10,
+		height = 8,
+		dpi = 300
+	)
+
+	ggsave(
+		paste0("plots/metrics/", experiment_name, "_conffusion_matrix.png"),
+		plot = confusion_matrix_plot,
 		width = 10,
 		height = 8,
 		dpi = 300
