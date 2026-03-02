@@ -10,6 +10,7 @@ data <- pre_process_data(data)
 
 predicting_vars1 <- data$dataframe %>%
         select(
+            match_id,       
             is_goal, 
             # x_location, 
             # y_location, 
@@ -41,6 +42,7 @@ predicting_vars1 <- data$dataframe %>%
 
 predicting_vars2 <- data$dataframe %>%
         select(
+            match_id,       
             is_goal, 
             # x_location, 
             # y_location, 
@@ -72,6 +74,7 @@ predicting_vars2 <- data$dataframe %>%
 
 predicting_vars3 <- data$dataframe %>%
         select(
+            match_id,       
             is_goal, 
             # x_location, 
             # y_location, 
@@ -103,6 +106,7 @@ predicting_vars3 <- data$dataframe %>%
 
 predicting_vars4 <- data$dataframe %>%
         select(
+            match_id,       
             is_goal, 
             # x_location, 
             # y_location, 
@@ -134,6 +138,7 @@ predicting_vars4 <- data$dataframe %>%
 
 predicting_vars5 <- data$dataframe %>%
         select(
+            match_id,       
             is_goal, 
             # x_location, 
             # y_location, 
