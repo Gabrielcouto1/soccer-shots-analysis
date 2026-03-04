@@ -19,6 +19,7 @@ generate_metrics <- function(predicting_vars, experiment_name) {
             recipe = map(splits, ~ {
                 rec <- recipe(is_goal ~ ., data = training(.x)) %>%
                     step_rm(match_id) %>%
+                    step_rm(any_of("statsbomb_xg")) %>%
                     step_dummy(all_nominal_predictors()) %>%
                     step_normalize(all_numeric_predictors()) #%>%
                     #step_smote(is_goal, over_ratio = 0.75, seed = 42)
@@ -74,8 +75,16 @@ generate_metrics <- function(predicting_vars, experiment_name) {
                 ))
         )
 
+    saveRDS(testing(split),  paste0("./results/", experiment_name, "_test_data.rds"))
+    saveRDS(experiments,   paste0("./results/", experiment_name, ".rds"))
+
+
+
+
+
     final_recipe <- recipe(is_goal ~ ., data = train_data) %>%
         step_rm(match_id) %>%
+        step_rm(any_of("statsbomb_xg")) %>%
         step_dummy(all_nominal_predictors()) %>%
         step_normalize(all_numeric_predictors()) ##%>%
         #step_smote(is_goal, over_ratio = 0.75, seed = 42)
@@ -105,7 +114,6 @@ generate_metrics <- function(predicting_vars, experiment_name) {
         dir.create("./results")
     }
 
-    saveRDS(experiments,   paste0("./results/", experiment_name, ".rds"))
     saveRDS(final_fit,     paste0("./results/", experiment_name, "_final_holdout.rds"))
     saveRDS(final_metrics, paste0("./results/", experiment_name, "_holdout_metrics.rds"))
 
