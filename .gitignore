@@ -5,3 +5,6 @@
 /results/experiments4.rds
 /results/experiments5.rds
 /*.rds
+/results/*.rds
+/results/xg_comparison/*.rds
+/results
