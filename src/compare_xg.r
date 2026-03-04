@@ -23,7 +23,7 @@ compare_xg_metrics <- function(experiment_name) {
         Modelo  = round(c(brier_model, logloss_model), 4)
     )
 
-    print(paste0("── ", experiment_name, " ──"))
+    print(paste0("── ", "Experimento 2", " ──"))
     print(results)
 
     n_bins <- 10
@@ -50,7 +50,7 @@ compare_xg_metrics <- function(experiment_name) {
         geom_point(aes(size = n), color = "#E07B6A", alpha = 0.8) +
         scale_size_continuous(range = c(2, 8), name = "Nº de chutes") +
         labs(
-            title = paste0("Curva de Calibração — ", experiment_name),
+            title = "Curva de Calibração — Experimento 2",
             x     = "Probabilidade Prevista",
             y     = "Frequência Real de Gols"
         ) +
