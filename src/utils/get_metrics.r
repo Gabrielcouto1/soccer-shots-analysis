@@ -20,8 +20,8 @@ generate_metrics <- function(predicting_vars, experiment_name) {
                 rec <- recipe(is_goal ~ ., data = training(.x)) %>%
                     step_rm(match_id) %>%
                     step_dummy(all_nominal_predictors()) %>%
-                    step_normalize(all_numeric_predictors()) %>%
-                    step_smote(is_goal, over_ratio = 0.75, seed = 42)
+                    step_normalize(all_numeric_predictors()) #%>%
+                    #step_smote(is_goal, over_ratio = 0.75, seed = 42)
                 rec
             }),
 
@@ -77,8 +77,8 @@ generate_metrics <- function(predicting_vars, experiment_name) {
     final_recipe <- recipe(is_goal ~ ., data = train_data) %>%
         step_rm(match_id) %>%
         step_dummy(all_nominal_predictors()) %>%
-        step_normalize(all_numeric_predictors()) #%>%
-        step_smote(is_goal, over_ratio = 0.75, seed = 42)
+        step_normalize(all_numeric_predictors()) ##%>%
+        #step_smote(is_goal, over_ratio = 0.75, seed = 42)
 
     final_model <- boost_tree(
         mode           = "classification",
@@ -101,7 +101,6 @@ generate_metrics <- function(predicting_vars, experiment_name) {
 
     print(final_metrics)
 
-    # Salva resultados
     if (!dir.exists("./results")) {
         dir.create("./results")
     }
