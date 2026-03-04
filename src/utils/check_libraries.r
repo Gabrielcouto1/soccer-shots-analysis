@@ -16,7 +16,8 @@ check_libraries <- function() {
         "kknn",
         "ranger",
         "xgboost",
-        "tidyr"
+        "tidyr",
+        "themis"
     )
 
     for (pkg in required_packages) {

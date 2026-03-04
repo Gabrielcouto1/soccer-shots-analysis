@@ -8,6 +8,39 @@ data <- read_csv("./datasets/shots.csv",show_col_types = FALSE)
 
 data <- pre_process_data(data)
 
+predicting_vars2 <- data$dataframe %>%
+        select(
+            match_id,       
+            is_goal, 
+            # x_location, 
+            # y_location, 
+            # x_end_location, 
+            # y_end_location, 
+            # shot_dist,
+            dist_to_goal, 
+            shot_angle, 
+            # is_ca,
+            # is_from_cross,
+            # is_under_pressure,
+            is_penalty,
+            is_open_goal,
+            is_first_time,
+            # is_one_on_one,
+            # is_aerial_win,
+            # teammates_in_frame,
+            opponents_in_frame,
+            # closest_opponent_dist,
+            # goalkeeper_dist,
+            opponents_in_penalty_area, #this 
+            opponents_in_goal_area, #this 
+            opponents_in_shot_path,
+            # statsbomb_xg,
+            # period,
+            # seconds_since_previous_shot,  
+            # timestamp
+)
+generate_metrics(predicting_vars2, "experiments2")
+
 predicting_vars1 <- data$dataframe %>%
         select(
             match_id,       
@@ -40,37 +73,7 @@ predicting_vars1 <- data$dataframe %>%
             # timestamp
 )
 
-predicting_vars2 <- data$dataframe %>%
-        select(
-            match_id,       
-            is_goal, 
-            # x_location, 
-            # y_location, 
-            # x_end_location, 
-            # y_end_location, 
-            # shot_dist,
-            dist_to_goal, 
-            shot_angle, 
-            # is_ca,
-            # is_from_cross,
-            # is_under_pressure,
-            is_penalty,
-            is_open_goal,
-            is_first_time,
-            # is_one_on_one,
-            # is_aerial_win,
-            # teammates_in_frame,
-            opponents_in_frame,
-            # closest_opponent_dist,
-            # goalkeeper_dist,
-            opponents_in_penalty_area, #this 
-            opponents_in_goal_area, #this 
-            opponents_in_shot_path,
-            # statsbomb_xg,
-            # period,
-            # seconds_since_previous_shot,  
-            # timestamp
-)
+
 
 predicting_vars3 <- data$dataframe %>%
         select(
@@ -169,7 +172,7 @@ predicting_vars5 <- data$dataframe %>%
 )
 
 generate_metrics(predicting_vars1, "experiments1")
-generate_metrics(predicting_vars2, "experiments2")
+
 generate_metrics(predicting_vars3, "experiments3")
 generate_metrics(predicting_vars4, "experiments4")
 generate_metrics(predicting_vars5, "experiments5")

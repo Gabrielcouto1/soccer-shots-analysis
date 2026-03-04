@@ -26,7 +26,18 @@ pre_process_data <- function(dataframe) {
             # Target variable
             is_goal = as.factor(is_goal)
         )
-
+    dataframe <- dataframe %>%
+        filter(
+            !is.na(shot_angle),
+            !is.na(dist_to_goal),
+            !is.na(opponents_in_frame),
+            !is.na(opponents_in_shot_path),
+            !is.na(opponents_in_penalty_area),
+            !is.na(opponents_in_goal_area),
+            !is.na(closest_opponent_dist),
+            !is.na(goalkeeper_dist)
+        )
+        
     numeric_vars <- dataframe %>%
         select(
             is_goal, 
